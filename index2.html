@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre vehículos de lujo premium en EliteDrive - el destino definitivo para entusiastas de coches de lujo.">
+    <title>EliteDrive | Vehículos de Lujo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0F1E2D;
+            --secondary: #C0C0C0;
+            --accent: #D4AF37;
+            --text: #333333;
+            --light: #FFFFFF;
+            --light-gray: #F5F5F5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .search-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--primary);
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--accent);
+        }
+        
+        nav {
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 15px 20px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent);
+        }
+        
+        /* Mobile Navigation */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            color: var(--light);
+            max-width: 600px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .hero-search {
+            background-color: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 30px;
+        }
+        
+        .search-heading {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .search-submit {
+            grid-column: 1 / -1;
+            background-color: var(--accent);
+            color: var(--light);
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .search-submit:hover {
+            background-color: #b7952d;
+        }
+        
+        /* Featured Models Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+            color: var(--text);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .car-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .car-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .car-content {
+            padding: 20px;
+        }
+        
+        .car-brand {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .car-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .car-price {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .car-features {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .car-feature {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .car-cta {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .car-btn {
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .car-btn-primary {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+        }
+        
+        .car-btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        /* Why Choose Us Section */
+        .values-section {
+            background-color: var(--light-gray);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .value-card {
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .value-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .testimonial-quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-category {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .blog-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .blog-excerpt {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        /* Call To Action Section */
+        .cta-section {
+            background-color: var(--primary);
+            color: var(--light);
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .cta-btn {
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .cta-btn-primary {
+            background-color: var(--accent);
+            color: var(--light);
+            border: none;
+        }
+        
+        .cta-btn-secondary {
+            background-color: transparent;
+            color: var(--light);
+            border: 1px solid var(--light);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 10px;
+        }
+        
+        .footer-link a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--light);
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-list {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="#" class="logo">Elite<span>Drive</span></a>
+                <div class="header-actions">
+                    <button class="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <nav>
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#" class="nav-link">Modelos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Inventario</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Experimenta el Lujo Extraordinario</h1>
+                <p class="hero-subtitle">Descubre nuestra exclusiva colección de los mejores automóviles de lujo del mundo.</p>
+                
+    <!-- Featured Models Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Modelos</h2>
+            <p class="section-subtitle">Explora nuestra selección de vehículos.</p>
+            
+            <div class="featured-grid">
+                <!-- Car Card 1 -->
+                <div class="car-card">
+                    <img src="mercedesclases.jpg" alt="Mercedes Clase S" class="car-image">
+                    <div class="car-content">
+                        <p class="car-brand">Mercedes-Benz</p>
+                        <h3 class="car-name">Clase S</h3>
+                        <p class="car-price">$110,000</p>
+                        <div class="car-features">
+                            <span class="car-feature">
+                                <i class="fas fa-tachometer-alt"></i> 3.0L V6
+                            </span>
+                            <span class="car-feature">
+                                <i class="fas fa-horse"></i> 429 HP
+                            </span>
+                            <span class="car-feature">
+                                <i class="fas fa-road"></i> AWD
+                            </span>
+                        </div>
+                        <div class="car-cta">
+                            <button class="car-btn car-btn-primary">Ver Detalles</button>
+                            <button class="car-btn car-btn-secondary">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car Card 2 -->
+                <div class="car-card">
+                    <img src="bmwseries7.jpg" alt="BMW Serie 7" class="car-image">
+                    <div class="car-content">
+                        <p class="car-brand">BMW</p>
+                        <h3 class="car-name">Serie 7</h3>
+                        <p class="car-price">$96,000</p>
+                        <div class="car-features">
+                            <span class="car-feature">
+                                <i class="fas fa-tachometer-alt"></i> 3.0L I6
+                            </span>
+                            <span class="car-feature">
+                                <i class="fas fa-horse"></i> 375 HP
+                            </span>
+                            <span class="car-feature">
+                                <i class="fas fa-road"></i> RWD
+                            </span>
+                        </div>
+                        <div class="car-cta">
+                            <button class="car-btn car-btn-primary">Ver Detalles</button>
+                            <button class="car-btn car-btn-secondary">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                                        <!-- Car Card 3 -->
+                <div class="car-card">
+                    <img src="MERCEDESBENZ.jpg" alt="Mercedes-Benz" class="car-image">
+                    <div class="car-content">
+                        <p class="car-brand">Mercedes-Benz</p>
+                        <h3 class="car-name">Benz</h3>
+                        <p class="car-price">$100,000</p>
+                        <div class="car-features">
+                            <span class="car-feature">
+                                <i class="fas fa-tachometer-alt"></i> 3.0L I6
+                            </span>
+                            <span class="car-feature">
+                                <i class="fas fa-horse"></i> 375 HP
+                            </span>
+                            <span class="car-feature">
+                                <i class="fas fa-road"></i> RWD
+                            </span>
+                        </div>
+                        <div class="car-cta">
+                            <button class="car-btn car-btn-primary">Ver Detalles</button>
+                            <button class="car-btn car-btn-secondary">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
